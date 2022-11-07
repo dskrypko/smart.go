@@ -7,7 +7,7 @@ package test
 import (
 	"testing"
 
-	"github.com/anatol/smart.go"
+	"github.com/dskrypko/smart.go"
 	"github.com/stretchr/testify/require"
 )
 
