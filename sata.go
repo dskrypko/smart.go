@@ -19,9 +19,10 @@ const (
 	_ATA_IDENTIFY_DEVICE = 0xec
 
 	// ATA feature register values for SMART
-	_SMART_READ_DATA     = 0xd0
-	_SMART_READ_LOG      = 0xd5
-	_SMART_RETURN_STATUS = 0xda
+	_SMART_READ_DATA       = 0xd0
+	_SMART_READ_THRESHOLDS = 0xd1
+	_SMART_READ_LOG        = 0xd5
+	_SMART_RETURN_STATUS   = 0xda
 )
 
 // AtaIdentifyDevice ATA IDENTIFY DEVICE struct. ATA8-ACS defines this as a page of 16-bit words.
@@ -690,6 +691,14 @@ func (d *SataDevice) ReadSMARTData() (*AtaSmartPage, error) {
 	}
 
 	return &page, nil
+}
+
+func (d *SataDevice) ReadSMARTThresholds() ([]byte, error) {
+	pageRaw, err := d.readSMARTThresholds()
+	if err != nil {
+		return nil, err
+	}
+	return pageRaw, nil
 }
 
 func computeAttributeRawValue(mapping ataDeviceAttr, vendorBytes [6]byte, reserved uint8, current uint8, worst uint8) uint64 {
