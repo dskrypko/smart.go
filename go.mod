@@ -1,4 +1,4 @@
-module github.com/anatol/smart.go
+module github.com/dskrypko/smart.go
 
 go 1.17
 
